@@ -1,4 +1,4 @@
-# Aplicação de Rotten-Potatoes
+# Aplicação Rotten-Potatoes
 
 A Rotten-Potatoes é uma aplicação web construída em ***Python*** que realiza avaliações em filmes cadastrados.
 
