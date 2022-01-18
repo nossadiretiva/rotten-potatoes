@@ -19,7 +19,6 @@ app.wsgi_app = middleware(app.wsgi_app)
 
 metrics = PrometheusMetrics(app, default_labels={'version': '1.0'})
 
-
 app.config['MONGODB_DB'] = os.getenv("MONGODB_DB", "admin")
 app.config['MONGODB_HOST'] = os.getenv("MONGODB_HOST", "localhost")
 app.config['MONGODB_PORT'] = int(os.getenv("MONGODB_PORT", "27017"))

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: src
+      dockerfile: Dockerfile
+    container_name: app-rotten-potatoes
+    image: nossadiretiva/app-rotten-potatoes:v1
+    ports:
+      - 5000:5000
+    networks:
+      - rotten_network
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_DB: admin
+      MONGODB_HOST: rotten-mongodb
+      MONGODB_PORT: 27017
+      MONGODB_USERNAME: rottenuser
+      MONGODB_PASSWORD: rottenpwd
+
+  mongodb:
+    container_name: rotten-mongodb
+    image: mongo:5.0.5
+    ports: 
+      - 27017:27017
+    networks:
+      - rotten_network
+    volumes:
+      - mongodb_vol:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rottenuser
+      MONGO_INITDB_ROOT_PASSWORD: rottenpwd
+      MONGO_INITDB_DATABASE: admin
+
+volumes:
+  mongodb_vol:
+
+networks:
+  rotten_network:
+    driver: bridge
